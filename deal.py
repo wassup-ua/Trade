@@ -67,3 +67,28 @@ def conclusion_get():
            {trade['symbol']}{trade['money']} USDT
            Комментарий: {trade['comments']}
                 """)
+
+
+
+def delete_deal():
+    for i, trade in enumerate(trade_log, start=1):
+        print(f"""
+        {i}. {trade['date']}
+           {trade['coin']}/USDT {trade['shoulder']}X {trade['trend']}
+           {trade['percent']}%
+           {trade['symbol']}{trade['money']} USDT
+           Комментарий: {trade['comments']}
+                """)
+    print("Для выхода в меню напиши '0'")
+
+    while True:
+        delete_user_num = int(input("Напиши номер сделки для удаления: "))
+
+        if delete_user_num == 0:
+            break
+        elif delete_user_num < 1 or delete_user_num > len(trade_log):
+            print("Такой сделки нет, попробуй ещё раз")
+        else:
+            del trade_log[delete_user_num - 1]
+            print("Сделка удалена ✅")
+            break
